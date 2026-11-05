@@ -1,0 +1,10 @@
+# Arquivos temporários do Python
+__pycache__/
+*.py[cod]
+
+# Cobertura de testes
+.coverage
+htmlcov/
+
+# Configurações do pytest
+.pytest_cache/
