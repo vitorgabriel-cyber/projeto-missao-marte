@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Controle - Missão Marte</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8eef5;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .painel {
+            background: white;
+            padding: 30px;
+            max-width: 450px;
+            margin: auto;
+            border-radius: 12px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            background-color: #1769aa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="painel">
+        <h1>Painel do Habitat de Marte</h1>
+
+        <h3>Estoque de Oxigênio</h3>
+        <p id="nivel_oxigenio">1000</p>
+
+        <h3>Solicitação de Oxigênio</h3>
+
+        <form id="form_oxigenio">
+            <label for="quantidade">
+                Quantidade solicitada:
+            </label>
+
+            <input
+                type="number"
+                id="quantidade"
+                min="1"
+                required
+            >
+
+            <br>
+
+            <button type="submit">
+                Solicitar Oxigênio
+            </button>
+        </form>
+
+        <p id="mensagem"></p>
+    </div>
+
+    <script>
+        const formulario = document.getElementById("form_oxigenio");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const quantidade = Number(
+                document.getElementById("quantidade").value
+            );
+
+            const estoque = document.getElementById("nivel_oxigenio");
+
+            const mensagem = document.getElementById("mensagem");
+
+            const atual = Number(estoque.textContent);
+
+            if (quantidade > 0 && quantidade <= atual) {
+                estoque.textContent = atual - quantidade;
+                mensagem.textContent = "Solicitação realizada com sucesso!";
+            } else {
+                mensagem.textContent = "Estoque insuficiente!";
+            }
+        });
+    </script>
+
+</body>
+</html>
